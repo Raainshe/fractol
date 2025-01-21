@@ -6,7 +6,7 @@
 /*   By: rmakoni <rmakoni@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 12:45:40 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/01/20 17:07:10 by rmakoni          ###   ########.fr       */
+/*   Updated: 2025/01/21 14:58:36 by rmakoni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ t_complex_no	get_complex_coordinates(int x, int y, t_fractol *fractol)
 {
 	t_complex_no	c_no;
 
-	c_no.real = (x - WIDTH / 2) * 4 / WIDTH * fractol->zoom + fractol->x_offest;
-	c_no.imaginary = (y - HEIGHT / 2) * 4 / HEIGHT * fractol->zoom
+	c_no.real = (x - WIDTH / 2.0) * 4.0 / WIDTH * fractol->zoom
+		+ fractol->x_offest;
+	c_no.imaginary = (y - HEIGHT / 2.0) * 4.0 / HEIGHT * fractol->zoom
 		+ fractol->y_offset;
 	return (c_no);
 }
@@ -33,10 +34,10 @@ int	is_mandolbrot(t_complex_no c_no, int max_itterations)
 	i = 0;
 	while (i < max_itterations)
 	{
-		if ((z.real * z.real + z.imaginary * z.imaginary) > 4)
+		if ((z.real * z.real + z.imaginary * z.imaginary) > 4.0)
 			return (i);
 		temp = z.real * z.real - z.imaginary * z.imaginary + c_no.real;
-		z.imaginary = 2 * z.real * z.imaginary + c_no.imaginary;
+		z.imaginary = 2.0 * z.real * z.imaginary + c_no.imaginary;
 		z.real = temp;
 		i++;
 	}
@@ -71,7 +72,7 @@ void	render_mandelbrot(t_fractol *fractol)
 		x = 0;
 		while (x < WIDTH)
 		{
-			c_no = get_complex_coordinates(x, 0, fractol);
+			c_no = get_complex_coordinates(x, y, fractol);
 			iterrations = is_mandolbrot(c_no, fractol->max_iterations);
 			colour = get_colour(iterrations, fractol->max_iterations);
 			mlx_put_pixel(fractol->mlx_img, x, y, colour);

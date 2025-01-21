@@ -6,7 +6,7 @@
 /*   By: rmakoni <rmakoni@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:35:48 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/01/20 16:57:59 by rmakoni          ###   ########.fr       */
+/*   Updated: 2025/01/21 17:02:56 by rmakoni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,18 @@ int	main(int argc, char **argv)
 			return (EXIT_FAILURE);
 		initialise_hooks(fractol);
 		render_mandelbrot(fractol);
+		mlx_loop(fractol->mlx);
+		mlx_terminate(fractol->mlx);
+		free(fractol);
+		return (EXIT_SUCCESS);
+	}
+	else
+	{
+		fractol = init_fractol('j');
+		if (!fractol)
+			return (EXIT_FAILURE);
+		initialise_hooks(fractol);
+		render_fractol(fractol);
 		mlx_loop(fractol->mlx);
 		mlx_terminate(fractol->mlx);
 		free(fractol);
