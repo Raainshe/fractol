@@ -6,7 +6,7 @@
 /*   By: rmakoni <rmakoni@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:35:51 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/01/20 16:55:14 by rmakoni          ###   ########.fr       */
+/*   Updated: 2025/01/23 14:24:35 by rmakoni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 # define WIDTH 800
 # define HEIGHT 800
-# define MAX_ITERATIONS 50;
+# define MAX_ITERATIONS 200;
 
 typedef struct s_complex_no
 {
@@ -41,9 +41,12 @@ typedef struct s_fractol
 }				t_fractol;
 
 void			render_mandelbrot(t_fractol *fractol);
+void			render_julia(t_fractol *fractol);
 void			hook_key(mlx_key_data_t keydata, void *param);
 void			hook_scroll(double x, double y, void *param);
 t_fractol		*init_fractol(char frac_type);
 void			initialise_hooks(t_fractol *fractol);
+int				get_colour(int itterations, int max_itterations);
+t_complex_no	get_complex_coordinates(int x, int y, t_fractol *fractol);
 
 #endif

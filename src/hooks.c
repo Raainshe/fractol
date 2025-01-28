@@ -6,7 +6,7 @@
 /*   By: rmakoni <rmakoni@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:41:45 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/01/21 15:08:56 by rmakoni          ###   ########.fr       */
+/*   Updated: 2025/01/28 16:03:06 by rmakoni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,14 @@ void	hook_key(mlx_key_data_t keydata, void *param)
 	if (fractol->frac_type == 'm' && keydata.key != MLX_KEY_ESCAPE
 		&& keydata.action != MLX_PRESS)
 		render_mandelbrot(fractol);
+	if (fractol->frac_type == 'j' && keydata.key != MLX_KEY_ESCAPE
+		&& keydata.action != MLX_PRESS)
+		render_julia(fractol);
 }
 
 void	hook_scroll(double x, double y, void *param)
 {
-	t_fractol *fractol;
+	t_fractol	*fractol;
 
 	(void)x;
 	fractol = param;
@@ -44,4 +47,6 @@ void	hook_scroll(double x, double y, void *param)
 		fractol->zoom = fractol->zoom * 1.1;
 	if (fractol->frac_type == 'm')
 		render_mandelbrot(fractol);
+	if (fractol->frac_type == 'j')
+		render_julia(fractol);
 }

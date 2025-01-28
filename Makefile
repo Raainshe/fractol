@@ -12,6 +12,7 @@ LIBS    := $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm $(LIBFT)/libft.a
 # Source files - Add your files here
 SRCS := src/fractol.c \
         src/mandelbrot.c \
+		src/julia.c \
         src/initialise.c \
         src/hooks.c
 
