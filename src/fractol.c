@@ -6,11 +6,23 @@
 /*   By: rmakoni <rmakoni@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:35:48 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/01/28 16:02:26 by rmakoni          ###   ########.fr       */
+/*   Updated: 2025/01/29 15:27:09 by rmakoni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+void	cleanup_mlx(t_fractol *fractol)
+{
+	if (fractol)
+	{
+		if (fractol->mlx_img)
+			mlx_delete_image(fractol->mlx, fractol->mlx_img);
+		if (fractol->mlx)
+			mlx_terminate(fractol->mlx);
+		free(fractol);
+	}
+}
 
 void	error_msg(void)
 {
@@ -47,8 +59,8 @@ int	start_fractol(char *argv)
 		initialise_hooks(fractol);
 		render_mandelbrot(fractol);
 		mlx_loop(fractol->mlx);
-		mlx_terminate(fractol->mlx);
-		return (free(fractol), 1);
+		cleanup_mlx(fractol);
+		return (1);
 	}
 	else
 	{
@@ -58,8 +70,8 @@ int	start_fractol(char *argv)
 		initialise_hooks(fractol);
 		render_julia(fractol);
 		mlx_loop(fractol->mlx);
-		mlx_terminate(fractol->mlx);
-		return (free(fractol), 1);
+		cleanup_mlx(fractol);
+		return (1);
 	}
 }
 
