@@ -6,7 +6,7 @@
 /*   By: rmakoni <rmakoni@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:41:45 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/01/28 16:03:06 by rmakoni          ###   ########.fr       */
+/*   Updated: 2025/02/03 14:46:34 by rmakoni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ void	hook_key(mlx_key_data_t keydata, void *param)
 	else if (keydata.key == MLX_KEY_UP && keydata.action == MLX_PRESS)
 		fractol->y_offset -= 0.1 * fractol->zoom;
 	else if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
+	{
 		mlx_close_window(fractol->mlx);
+		return ;
+	}
 	if (fractol->frac_type == 'm' && keydata.key != MLX_KEY_ESCAPE
 		&& keydata.action != MLX_PRESS)
 		render_mandelbrot(fractol);

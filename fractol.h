@@ -6,7 +6,7 @@
 /*   By: rmakoni <rmakoni@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:35:51 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/01/23 14:24:35 by rmakoni          ###   ########.fr       */
+/*   Updated: 2025/02/03 15:39:48 by rmakoni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 # define WIDTH 800
 # define HEIGHT 800
-# define MAX_ITERATIONS 200;
+# define MAX_ITERATIONS 50;
 
 typedef struct s_complex_no
 {
@@ -48,5 +48,6 @@ t_fractol		*init_fractol(char frac_type);
 void			initialise_hooks(t_fractol *fractol);
 int				get_colour(int itterations, int max_itterations);
 t_complex_no	get_complex_coordinates(int x, int y, t_fractol *fractol);
+void			cleanup_mlx(t_fractol *fractol);
 
 #endif

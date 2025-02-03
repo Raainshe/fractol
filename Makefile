@@ -1,7 +1,8 @@
 NAME    := fractol
-CFLAGS  := -Wextra -Wall -Werror -Wunreachable-code -Ofast
+CFLAGS  := -Wextra -Wall -Werror -Wunreachable-code -Ofast 
 LIBMLX  := ./MLX42
 LIBFT   := ./libft
+CC	  := cc
 
 # Headers
 HEADERS	:= -I . -I $(LIBMLX)/include -I $(LIBFT)
@@ -30,7 +31,7 @@ libft:
 	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)\n"
 
 $(NAME): $(OBJS)
-	@$(CC) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
 
 clean:
 	@rm -rf $(OBJS)

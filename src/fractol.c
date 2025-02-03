@@ -6,7 +6,7 @@
 /*   By: rmakoni <rmakoni@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:35:48 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/01/29 15:27:09 by rmakoni          ###   ########.fr       */
+/*   Updated: 2025/02/03 16:51:06 by rmakoni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	cleanup_mlx(t_fractol *fractol)
 			mlx_terminate(fractol->mlx);
 		free(fractol);
 	}
+	fractol->mlx = NULL;
+	fractol->mlx_img = NULL;
 }
 
 void	error_msg(void)
@@ -30,8 +32,8 @@ void	error_msg(void)
 	ft_printf("Please enter: Julia OR Mandelbrot\n");
 }
 
-//returns -1 if parameters are incorrect
-//return 1 for Mandelbrot & 2 for Julia
+// returns -1 if parameters are incorrect
+// return 1 for Mandelbrot & 2 for Julia
 int	fractol_decision(char *arg)
 {
 	char	*str;
@@ -83,7 +85,7 @@ int	main(int argc, char **argv)
 		return (error_msg(), 1);
 	success = start_fractol(argv[1]);
 	if (success == 1)
-		return (EXIT_SUCCESS);
+		return (system("leaks fractol"), EXIT_SUCCESS);
 	else
-		return (EXIT_FAILURE);
+		return (system("leaks fractol"), EXIT_FAILURE);
 }
