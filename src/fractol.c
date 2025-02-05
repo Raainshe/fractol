@@ -6,7 +6,7 @@
 /*   By: rmakoni <rmakoni@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:35:48 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/02/03 16:51:06 by rmakoni          ###   ########.fr       */
+/*   Updated: 2025/02/04 20:19:49 by rmakoni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	main(int argc, char **argv)
 		return (error_msg(), 1);
 	success = start_fractol(argv[1]);
 	if (success == 1)
-		return (system("leaks fractol"), EXIT_SUCCESS);
+		return (EXIT_SUCCESS);
 	else
-		return (system("leaks fractol"), EXIT_FAILURE);
+		return (EXIT_FAILURE);
 }
