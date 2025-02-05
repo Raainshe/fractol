@@ -6,7 +6,7 @@
 /*   By: rmakoni <rmakoni@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:35:48 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/02/04 20:19:49 by rmakoni          ###   ########.fr       */
+/*   Updated: 2025/02/05 11:54:47 by rmakoni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ void	cleanup_mlx(t_fractol *fractol)
 
 void	error_msg(void)
 {
-	ft_printf("You have entered incorrect parameters.\n");
-	ft_printf("Please enter: Julia OR Mandelbrot\n");
+	list_possible_params();
 }
 
 // returns -1 if parameters are incorrect
@@ -49,13 +48,13 @@ int	fractol_decision(char *arg)
 		return (free(str), -1);
 }
 
-int	start_fractol(char *argv)
+int	start_fractol(char *argv, double real, double imaginary)
 {
 	t_fractol	*fractol;
 
 	if (fractol_decision(argv) == 1)
 	{
-		fractol = init_fractol('m');
+		fractol = init_fractol('m', real, imaginary);
 		if (!fractol)
 			return (0);
 		initialise_hooks(fractol);
@@ -66,7 +65,7 @@ int	start_fractol(char *argv)
 	}
 	else
 	{
-		fractol = init_fractol('j');
+		fractol = init_fractol('j', real, imaginary);
 		if (!fractol)
 			return (0);
 		initialise_hooks(fractol);
@@ -80,10 +79,15 @@ int	start_fractol(char *argv)
 int	main(int argc, char **argv)
 {
 	int	success;
+	int	p_response;
 
-	if (argc != 2 || fractol_decision(argv[1]) == -1)
-		return (error_msg(), 1);
-	success = start_fractol(argv[1]);
+	p_response = check_params(argc, argv);
+	if (p_response == -1)
+		return (error_msg(), EXIT_FAILURE);
+	if (p_response == 1)
+		success = start_fractol(argv[1], 0.0, 0.0);
+	else
+		success = start_fractol(argv[1], ft_atod(argv[2]), ft_atod(argv[3]));
 	if (success == 1)
 		return (EXIT_SUCCESS);
 	else

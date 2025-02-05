@@ -6,13 +6,14 @@
 /*   By: rmakoni <rmakoni@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:06:53 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/01/21 16:06:34 by rmakoni          ###   ########.fr       */
+/*   Updated: 2025/02/05 11:45:52 by rmakoni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-t_fractol	*init_fractol(char frac_type)
+t_fractol	*init_fractol(char frac_type, double julia_real,
+		double julia_imaginary)
 {
 	t_fractol	*fractol;
 
@@ -36,6 +37,8 @@ t_fractol	*init_fractol(char frac_type)
 	fractol->zoom = 1.0;
 	fractol->max_iterations = MAX_ITERATIONS;
 	fractol->frac_type = frac_type;
+	fractol->julia_imaginary = julia_imaginary;
+	fractol->julia_real = julia_real;
 	return (fractol);
 }
 

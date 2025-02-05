@@ -15,7 +15,8 @@ SRCS := src/fractol.c \
         src/mandelbrot.c \
 		src/julia.c \
         src/initialise.c \
-        src/hooks.c
+        src/hooks.c \
+		src/para_checks.c
 
 OBJS    := ${SRCS:.c=.o}
 

@@ -6,7 +6,7 @@
 /*   By: rmakoni <rmakoni@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:35:51 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/02/03 15:39:48 by rmakoni          ###   ########.fr       */
+/*   Updated: 2025/02/05 11:46:52 by rmakoni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ typedef struct s_fractol
 	double		zoom;
 	int			max_iterations;
 	char		frac_type;
+	double		julia_real;
+	double		julia_imaginary;
 
 }				t_fractol;
 
@@ -44,10 +46,13 @@ void			render_mandelbrot(t_fractol *fractol);
 void			render_julia(t_fractol *fractol);
 void			hook_key(mlx_key_data_t keydata, void *param);
 void			hook_scroll(double x, double y, void *param);
-t_fractol		*init_fractol(char frac_type);
+t_fractol		*init_fractol(char frac_type, double julia_real,
+					double julia_imaginary);
 void			initialise_hooks(t_fractol *fractol);
 int				get_colour(int itterations, int max_itterations);
 t_complex_no	get_complex_coordinates(int x, int y, t_fractol *fractol);
 void			cleanup_mlx(t_fractol *fractol);
+void			list_possible_params(void);
+int				check_params(int argc, char **argv);
 
 #endif
