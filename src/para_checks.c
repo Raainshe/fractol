@@ -6,7 +6,7 @@
 /*   By: rmakoni <rmakoni@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 20:16:38 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/02/05 11:57:02 by rmakoni          ###   ########.fr       */
+/*   Updated: 2025/02/05 13:56:33 by rmakoni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	list_possible_params(void)
 	ft_printf("julia -0.75 0.0\n");
 	ft_printf("julia 0.285 0.01\n");
 }
+
 // 1 if valid 0 if not
 int	check_julia_values(char **argv)
 {
@@ -43,7 +44,7 @@ int	check_julia_values(char **argv)
 	while (argv[3][i])
 	{
 		if (ft_isdigit(argv[3][i]) == 0 && argv[3][i] != '.'
-			&& argv[2][i] != '-')
+			&& argv[3][i] != '-')
 			return (0);
 		i++;
 	}

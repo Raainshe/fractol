@@ -6,7 +6,7 @@
 /*   By: rmakoni <rmakoni@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:35:51 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/02/05 11:46:52 by rmakoni          ###   ########.fr       */
+/*   Updated: 2025/02/05 14:03:26 by rmakoni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 # define WIDTH 800
 # define HEIGHT 800
-# define MAX_ITERATIONS 50;
+# define MAX_ITERATIONS 50
 
 typedef struct s_complex_no
 {
@@ -39,6 +39,8 @@ typedef struct s_fractol
 	char		frac_type;
 	double		julia_real;
 	double		julia_imaginary;
+	int			res_scale;
+	int			is_moving;
 
 }				t_fractol;
 
