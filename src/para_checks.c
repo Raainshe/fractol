@@ -6,7 +6,7 @@
 /*   By: rmakoni <rmakoni@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 20:16:38 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/02/05 13:56:33 by rmakoni          ###   ########.fr       */
+/*   Updated: 2025/02/10 12:50:20 by rmakoni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,28 +27,40 @@ void	list_possible_params(void)
 	ft_printf("julia 0.285 0.01\n");
 }
 
+int	is_valid_number(char *str)
+{
+	int	i;
+	int	dot_count;
+
+	i = 0;
+	dot_count = 0;
+	if (str[i] == '-')
+		i++;
+	if (!str[i])
+		return (0);
+	while (str[i] != '\0')
+	{
+		if (str[i] == '.')
+		{
+			dot_count++;
+			if (dot_count > 1)
+				return (0);
+		}
+		else if (!ft_isdigit(str[i]))
+			return (0);
+		i++;
+	}
+	if (str[--i] == '.')
+		return (0);
+	return (1);
+}
+
 // 1 if valid 0 if not
 int	check_julia_values(char **argv)
 {
-	int	i;
-
-	i = 0;
-	while (argv[2][i])
-	{
-		if (ft_isdigit(argv[2][i]) == 0 && argv[2][i] != '.'
-			&& argv[2][i] != '-')
-			return (0);
-		i++;
-	}
-	i = 0;
-	while (argv[3][i])
-	{
-		if (ft_isdigit(argv[3][i]) == 0 && argv[3][i] != '.'
-			&& argv[3][i] != '-')
-			return (0);
-		i++;
-	}
-	return (1);
+	if (is_valid_number(argv[2]) && is_valid_number(argv[3]))
+		return (1);
+	return (0);
 }
 
 // returns -1 if parameters are incorrect
